@@ -1,0 +1,30 @@
+main.go -> 
+- Ajout de la vérification si un argument d'adresse a été fourni
+- Ajout de la connexion au serveur
+
+network.go (Created) ->
+- Ajout de la fonction startListening
+
+game.go -> 
+- Ajout d'attributs :
+    - playerNumber int, sert à identifier le joueur pour les logs (1 ou 2)
+    - colorSelected bool, sert à indiquer si le joueur à choisis sa couleur
+    - otherConnected bool, indique si l'adversaire est connecté
+    - reader *bufio.Reader, Lecteur pour le serveur
+    - writer *bufio.Writer, Ecriveur pour le serveur
+    - serverMsgChan chan string, channel pour les messages du serveur
+
+update.go ->
+- Modification de la fonction titleUpdate() 
+(Ajout de la condition g.isServerConfirmationReceived dans le return) voir le commentaire
+
+- Modification de la fonction colorSelectUpdate()
+(Ajout de la condition en début de fonction)
+(Ajout d'une condition supplémentaire lorsque l'on appuie sur Entrée)
+(Envoie au serveur la couleur choisis)
+(Reçois du serveur la couleur de l'adversaire)
+
+draw.go -> 
+- Ajout du texte "En attente de l'adversaire..." lorsque la couleur est choisis.
+- Ajout d'une croix sur la couleur de l'adversaire lorsque celui
+ci la choisis.
